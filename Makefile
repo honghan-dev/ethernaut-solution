@@ -5,9 +5,17 @@
 ANVIL_PRIVATE_KEY := $(PRIVATE_KEY)
 ANVIL_RPC := $(ANVIL_RPC_URL)
 
-github:
-	@git add .
-	@git commit -m "$(MSG)"
+# Install Foundry if not already installed
+install:
+	@echo "Checking for Foundry installation..."
+	@if [ -x "$$(command -v forge)" ]; then \
+		echo "Foundry is already installed."; \
+	else \
+		echo "Installing Foundry..."; \
+		curl -L https://foundry.paradigm.xyz | bash; \
+		source ~/.bashrc; \
+		foundryup; \
+	fi
 
 # Launch attack script
 script:

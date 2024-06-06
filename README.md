@@ -1,66 +1,38 @@
-## Foundry
+# Solution to Ethernaut CTF
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Introduction
 
-Foundry consists of:
+Welcome to the repository containing solutions to the [Ethernaut CTF](https://github.com/OpenZeppelin/ethernaut) a smart contract hacking game by OpenZeppelin. Ethernaut challenges players to exploit vulnerabilities in Ethereum smart contracts, providing a hands-on way to learn about smart contract security.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Prerequisites
 
-## Documentation
+- Make sure you have `make` installed on your system. If not, you can install it using:
+  - On macOS: `brew install make`
+  - On Ubuntu: `sudo apt-get install make`
+  - On Windows: Use a package manager like [Chocolatey](https://chocolatey.org/) to install `make`.
 
-https://book.getfoundry.sh/
+## Setup
 
-## Usage
+- Create .env file
 
-### Build
-
-```shell
-$ forge build
+```javascript
+PRIVATE_KEY = your_private_key;
+ANVIL_RPC_URL = your_rpc_url;
 ```
 
-### Test
+### Install Dependencies
 
-```shell
-$ forge test
+This project uses Foundry for script execution. You can install Foundry and its dependencies using the Makefile provided. Run the following command to ensure Foundry is installed:
+
+```sh
+make install
 ```
 
-### Format
+### Deploy solution script
 
-```shell
-$ forge fmt
-```
+```sh
+make script FILENAME=TheLevelFunctionName
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+# Level 0
+make script FILENAME=L0HelloEthernautAttack
 ```
