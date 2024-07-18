@@ -22,6 +22,13 @@ script:
 	@echo "Script: $(FILENAME).s.sol"
 	@forge script script/$(FILENAME).s.sol:$(FILENAME) -vvvv --broadcast --rpc-url $(ANVIL_RPC) --private-key $(ANVIL_PRIVATE_KEY)
 
+# Github push
+push:
+	@echo "Pushing to Github..."
+	git add .
+	git commit -m "Update"
+	git push
+
 # Clean target
 clean:
 	@echo "Cleaning up..."
